@@ -14,6 +14,6 @@ public class FantasyCharacter {
     private String id;
     private String name;
     private String characterClass;
-    private int attack;
-    private int defence;
+    private Long attack;
+    private Long defence;
 }

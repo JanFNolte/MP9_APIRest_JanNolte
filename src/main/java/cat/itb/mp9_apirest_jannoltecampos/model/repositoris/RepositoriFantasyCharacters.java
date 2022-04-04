@@ -9,6 +9,6 @@ public interface RepositoriFantasyCharacters extends JpaRepository<FantasyCharac
     FantasyCharacter findByName(String name);
     List<FantasyCharacter> findByCharacterClass(String characterClass);
     long countByCharacterClass(String characterClass);
-    List<FantasyCharacter> findByAttackGreaterThan(int attack);
-    List<FantasyCharacter> findByDefenceGreaterThan(int defence);
+    List<FantasyCharacter> findByAttackGreaterThan(Long attack);
+    List<FantasyCharacter> findByDefenceGreaterThan(Long defence);
 }
