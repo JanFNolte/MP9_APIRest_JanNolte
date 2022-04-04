@@ -29,10 +29,10 @@ public class ServeiCharacters {
     public FantasyCharacter getCharacterById(String id){
         return repositoriFantasyCharacters.findById(id).orElse(null);
     }
-    public List<FantasyCharacter> listCharactersByAttackMoreThan(int attack){
+    public List<FantasyCharacter> listCharactersByAttackMoreThan(Long attack){
         return repositoriFantasyCharacters.findByAttackGreaterThan(attack);
     }
-    public List<FantasyCharacter> listCharactersByDefenceMoreThan(int defense){
+    public List<FantasyCharacter> listCharactersByDefenceMoreThan(Long defense){
         return repositoriFantasyCharacters.findByDefenceGreaterThan(defense);
     }
     public FantasyCharacter createCharacter(FantasyCharacter character){

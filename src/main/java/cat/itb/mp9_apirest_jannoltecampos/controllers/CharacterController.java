@@ -4,6 +4,8 @@ package cat.itb.mp9_apirest_jannoltecampos.controllers;
 import cat.itb.mp9_apirest_jannoltecampos.model.entitats.FantasyCharacter;
 import cat.itb.mp9_apirest_jannoltecampos.model.serveis.ServeiCharacters;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,32 +18,43 @@ public class CharacterController {
 
     @CrossOrigin(origins = "http://localhost:9001")
     @GetMapping("/fantasyCharacters")
-    public List<FantasyCharacter> listFantasyCharacters(@RequestParam(value = "attack", required = false) int attack){
-        if(attack == 0){
-            return serveiCharacters.listCharacters();
+    public ResponseEntity<?> listFantasyCharacters(@RequestParam(value = "attack", required = false) Long attack){
+        if(attack == null){
+            List<FantasyCharacter> list =serveiCharacters.listCharacters();
+            if(list == null) return ResponseEntity.notFound().build();
+            else return ResponseEntity.ok(list);
         }
         else{
-            return serveiCharacters.listCharactersByAttackMoreThan(attack);
+            List<FantasyCharacter> list = serveiCharacters.listCharactersByAttackMoreThan(attack);
+            if(list == null) return ResponseEntity.notFound().build();
+            else return ResponseEntity.ok(list);
         }
     }
     @GetMapping("/fantasyCharacters/{id}")
-    public FantasyCharacter searchFantasyCharacter(@PathVariable String id){
-        return serveiCharacters.getCharacterById(id);
+    public ResponseEntity<?> searchFantasyCharacter(@PathVariable String id){
+        FantasyCharacter item = serveiCharacters.getCharacterById(id);
+        if(item == null) return ResponseEntity.notFound().build();
+        else return ResponseEntity.ok(item);
     }
     @GetMapping("/fantasyCharacters/fantasyClass/{fantasyClass}")
-    public List<FantasyCharacter> listFantasyCharactersByClass(@PathVariable String fantasyClass){
-        return serveiCharacters.listCharactersByCharacterClass(fantasyClass);
+    public ResponseEntity<?> listFantasyCharactersByClass(@PathVariable String fantasyClass){
+        List<FantasyCharacter> list =  serveiCharacters.listCharactersByCharacterClass(fantasyClass);
+        if(list == null) return ResponseEntity.notFound().build();
+        else return ResponseEntity.ok(list);
     }
     @PostMapping("/fantasyCharacters")
-    public FantasyCharacter createFantasyCharacter(@RequestBody FantasyCharacter newCharacter){
-        return serveiCharacters.createCharacter(newCharacter);
+    public ResponseEntity<?> createFantasyCharacter(@RequestBody FantasyCharacter newCharacter){
+        FantasyCharacter res = serveiCharacters.createCharacter(newCharacter);
+        return new ResponseEntity<FantasyCharacter>(res, HttpStatus.CREATED);
     }
     @DeleteMapping("/fantasyCharacters/{id}")
-    public FantasyCharacter deleteFantasyCharacter(@PathVariable String id){
-        return serveiCharacters.deleteCharacter(id);
+    public ResponseEntity<?> deleteFantasyCharacter(@PathVariable String id){
+        FantasyCharacter res =serveiCharacters.deleteCharacter(id);
+        return new ResponseEntity<FantasyCharacter>(res, HttpStatus.NO_CONTENT);
     }
     @PutMapping("/fantasyCharacters")
-    public FantasyCharacter modifyFantasyCharacter(@RequestBody FantasyCharacter updatedCharacter){
-        return serveiCharacters.updateCharacter(updatedCharacter);
+    public ResponseEntity<?> modifyFantasyCharacter(@RequestBody FantasyCharacter updatedCharacter){
+        FantasyCharacter res = serveiCharacters.updateCharacter(updatedCharacter);
+        return new ResponseEntity<FantasyCharacter>(res, HttpStatus.OK);
     }
 }
