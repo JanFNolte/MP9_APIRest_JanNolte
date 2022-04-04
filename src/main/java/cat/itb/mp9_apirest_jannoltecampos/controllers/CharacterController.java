@@ -55,6 +55,6 @@ public class CharacterController {
     @PutMapping("/fantasyCharacters")
     public ResponseEntity<?> modifyFantasyCharacter(@RequestBody FantasyCharacter updatedCharacter){
         FantasyCharacter res = serveiCharacters.updateCharacter(updatedCharacter);
-        return new ResponseEntity<FantasyCharacter>(res, HttpStatus.OK);
+        return ResponseEntity.ok(res);
     }
 }
