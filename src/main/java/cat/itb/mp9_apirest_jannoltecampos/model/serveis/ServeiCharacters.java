@@ -26,7 +26,7 @@ public class ServeiCharacters {
     public long countCharacters(){
         return repositoriFantasyCharacters.count();
     }
-    public FantasyCharacter getCharacterById(String id){
+    public FantasyCharacter getCharacterById(Integer id){
         return repositoriFantasyCharacters.findById(id).orElse(null);
     }
     public List<FantasyCharacter> listCharactersByAttackMoreThan(Long attack){
@@ -45,7 +45,7 @@ public class ServeiCharacters {
         }
         return aux;
     }
-    public FantasyCharacter deleteCharacter(String id){
+    public FantasyCharacter deleteCharacter(Integer id){
         FantasyCharacter res = repositoriFantasyCharacters.findById(id).orElse(null);
         if(res!=null) repositoriFantasyCharacters.deleteById(id);
         return res;
