@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class CharacterController {
     private final ServeiCharacters serveiCharacters;
 
-    @CrossOrigin(origins = "http://localhost:9001")
+    //@CrossOrigin(origins = "http://localhost:9001")
     @GetMapping("/fantasyCharacters")
     public ResponseEntity<?> listFantasyCharacters(@RequestParam(value = "attack", required = false) Long attack){
         if(attack == null){
@@ -31,7 +31,7 @@ public class CharacterController {
         }
     }
     @GetMapping("/fantasyCharacters/{id}")
-    public ResponseEntity<?> searchFantasyCharacter(@PathVariable String id){
+    public ResponseEntity<?> searchFantasyCharacter(@PathVariable Integer id){
         FantasyCharacter item = serveiCharacters.getCharacterById(id);
         if(item == null) return ResponseEntity.notFound().build();
         else return ResponseEntity.ok(item);
@@ -48,7 +48,7 @@ public class CharacterController {
         return new ResponseEntity<FantasyCharacter>(res, HttpStatus.CREATED);
     }
     @DeleteMapping("/fantasyCharacters/{id}")
-    public ResponseEntity<?> deleteFantasyCharacter(@PathVariable String id){
+    public ResponseEntity<?> deleteFantasyCharacter(@PathVariable Integer id){
         FantasyCharacter res =serveiCharacters.deleteCharacter(id);
         return new ResponseEntity<FantasyCharacter>(res, HttpStatus.NO_CONTENT);
     }

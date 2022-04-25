@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface RepositoriFantasyCharacters extends JpaRepository<FantasyCharacter, String> {
+public interface RepositoriFantasyCharacters extends JpaRepository<FantasyCharacter, Integer> {
     FantasyCharacter findByName(String name);
     List<FantasyCharacter> findByCharacterClass(String characterClass);
     long countByCharacterClass(String characterClass);
