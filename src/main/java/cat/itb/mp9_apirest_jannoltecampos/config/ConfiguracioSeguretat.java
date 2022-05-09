@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Configuration
+/*@Configuration
 @EnableWebSecurity
 public class ConfiguracioSeguretat extends WebSecurityConfigurerAdapter {
     @Bean
@@ -20,5 +20,5 @@ public class ConfiguracioSeguretat extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().passwordEncoder(xifrat()).withUser("JanNolte").password(xifrat().encode("jfnolte")).roles("ADMIN");
     }
-}
+}*/
 
